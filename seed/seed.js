@@ -32,21 +32,31 @@ async function wipeAll() {
 async function ensureDemoStudent() {
   let student = await UserModel.findByEmail("fiona@student.local");
   if (!student) {
-    student = await UserModel.create({
-      name: "Fiona",
-      email: "fiona@student.local",
-      role: "student",
-    });
+    // Use createWithPassword for proper password hashing
+    student = await UserModel.createWithPassword(
+      "Fiona",
+      "fiona@student.local",
+      "password123",
+      "student"
+    );
   }
   return student;
 }
 
+async function ensureDemoOrganiser() {
+  let organiser = await UserModel.findByEmail("organiser@yoga.local");
+  if (!organiser) {
+    organiser = await UserModel.createWithPassword(
+      "Organiser Admin",
+      "organiser@yoga.local",
+      "password123",
+      "organiser"
+    );
+  }
+  return organiser;
+}
+
 async function createWeekendWorkshop() {
-  const instructor = await UserModel.create({
-    name: "Ava",
-    email: "ava@yoga.local",
-    role: "instructor",
-  });
   const course = await CourseModel.create({
     title: "Winter Mindfulness Workshop",
     level: "beginner",
@@ -54,8 +64,9 @@ async function createWeekendWorkshop() {
     allowDropIn: false,
     startDate: "2026-01-10",
     endDate: "2026-01-11",
-    instructorId: instructor._id,
     sessionIds: [],
+    price: 89.99,
+    location: "Studio A, 123 Main Street",
     description: "Two days of breath, posture alignment, and meditation.",
   });
 
@@ -70,30 +81,27 @@ async function createWeekendWorkshop() {
       endDateTime: iso(end),
       capacity: 20,
       bookedCount: 0,
+      location: "Studio A, 123 Main Street",
     });
     sessions.push(s);
   }
   await CourseModel.update(course._id, {
     sessionIds: sessions.map((s) => s._id),
   });
-  return { course, sessions, instructor };
+  return { course, sessions };
 }
 
 async function createWeeklyBlock() {
-  const instructor = await UserModel.create({
-    name: "Ben",
-    email: "ben@yoga.local",
-    role: "instructor",
-  });
   const course = await CourseModel.create({
-    title: "12‑Week Vinyasa Flow",
+    title: "12-Week Vinyasa Flow",
     level: "intermediate",
     type: "WEEKLY_BLOCK",
     allowDropIn: true,
     startDate: "2026-02-02",
     endDate: "2026-04-20",
-    instructorId: instructor._id,
     sessionIds: [],
+    price: 149.99,
+    location: "Studio B, 456 Oak Avenue",
     description: "Progressive sequences building strength and flexibility.",
   });
 
@@ -108,13 +116,14 @@ async function createWeeklyBlock() {
       endDateTime: iso(end),
       capacity: 18,
       bookedCount: 0,
+      location: "Studio B, 456 Oak Avenue",
     });
     sessions.push(s);
   }
   await CourseModel.update(course._id, {
     sessionIds: sessions.map((s) => s._id),
   });
-  return { course, sessions, instructor };
+  return { course, sessions };
 }
 
 async function verifyAndReport() {
@@ -144,6 +153,9 @@ async function run() {
   console.log("Creating demo student…");
   const student = await ensureDemoStudent();
 
+  console.log("Creating demo organiser…");
+  const organiser = await ensureDemoOrganiser();
+
   console.log("Creating weekend workshop…");
   const w = await createWeekendWorkshop();
 
@@ -153,15 +165,20 @@ async function run() {
   await verifyAndReport();
 
   console.log("\n✅ Seed complete.");
-  console.log("Student ID           :", student._id);
+  console.log("\nDemo User Credentials:");
+  console.log("  Student  : fiona@student.local / password123");
+  console.log("  Organiser: organiser@yoga.local / password123");
+  console.log("\nEntity IDs:");
+  console.log("  Student ID           :", student._id);
+  console.log("  Organiser ID         :", organiser._id);
   console.log(
-    "Workshop course ID   :",
+    "  Workshop course ID   :",
     w.course._id,
     "(sessions:",
     w.sessions.length + ")"
   );
   console.log(
-    "Weekly block course ID:",
+    "  Weekly block course ID:",
     b.course._id,
     "(sessions:",
     b.sessions.length + ")"

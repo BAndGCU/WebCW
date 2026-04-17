@@ -38,6 +38,8 @@ export const homePage = async (req, res, next) => {
           allowDropIn: c.allowDropIn,
           startDate: c.startDate ? fmtDateOnly(c.startDate) : "",
           endDate: c.endDate ? fmtDateOnly(c.endDate) : "",
+          price: c.price ? `£${c.price.toFixed(2)}` : "TBA",
+          location: c.location || "TBA",
           nextSession: nextSession ? fmtDate(nextSession.startDateTime) : "TBA",
           sessionsCount: sessions.length,
           description: c.description,
@@ -64,6 +66,7 @@ export const courseDetailPage = async (req, res, next) => {
       id: s._id,
       start: fmtDate(s.startDateTime),
       end: fmtDate(s.endDateTime),
+      location: s.location || course.location || "TBA",
       capacity: s.capacity,
       booked: s.bookedCount ?? 0,
       remaining: Math.max(0, (s.capacity ?? 0) - (s.bookedCount ?? 0)),
@@ -79,9 +82,13 @@ export const courseDetailPage = async (req, res, next) => {
         allowDropIn: course.allowDropIn,
         startDate: course.startDate ? fmtDateOnly(course.startDate) : "",
         endDate: course.endDate ? fmtDateOnly(course.endDate) : "",
+        price: course.price ? `£${course.price.toFixed(2)}` : "TBA",
+        location: course.location || "TBA",
         description: course.description,
       },
       sessions: rows,
+      user: req.user, // Pass user to template for authentication checks
+      error: req.query.error, // Pass error message from query parameter
     });
   } catch (err) {
     next(err);
@@ -94,15 +101,22 @@ export const postBookCourse = async (req, res, next) => {
     const booking = await bookCourseForUser(req.user._id, courseId);
     res.redirect(`/bookings/${booking._id}?status=${booking.status}`);
   } catch (err) {
-    res
-      .status(400)
-      .render("error", { title: "Booking failed", message: err.message });
+    // Redirect back to course page with error message
+    res.redirect(`/courses/${req.params.id}?error=${encodeURIComponent(err.message)}`);
   }
 };
 
 export const postBookSession = async (req, res, next) => {
+  const sessionId = req.params.id;
+  let courseId = '';
+  
   try {
-    const sessionId = req.params.id;
+    const session = await SessionModel.findById(sessionId);
+    if (!session) {
+      return res.redirect(`/courses?error=${encodeURIComponent("Session not found")}`);
+    }
+    courseId = session.courseId;
+
     const booking = await bookSessionForUser(req.user._id, sessionId);
     res.redirect(`/bookings/${booking._id}?status=${booking.status}`);
   } catch (err) {
@@ -110,7 +124,8 @@ export const postBookSession = async (req, res, next) => {
       err.code === "DROPIN_NOT_ALLOWED"
         ? "Drop-ins are not allowed for this course."
         : err.message;
-    res.status(400).render("error", { title: "Booking failed", message });
+    // Redirect back to course page with error message
+    res.redirect(`/courses/${courseId}?error=${encodeURIComponent(message)}`);
   }
 };
 
@@ -122,6 +137,13 @@ export const bookingConfirmationPage = async (req, res, next) => {
       return res
         .status(404)
         .render("error", { title: "Not found", message: "Booking not found" });
+
+    if (!req.user || booking.userId !== req.user._id) {
+      return res.status(403).render("error", {
+        title: "Access denied",
+        message: "You can only view your own booking confirmations.",
+      });
+    }
 
     res.render("booking_confirmation", {
       title: "Booking confirmation",

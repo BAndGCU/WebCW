@@ -1,0 +1,47 @@
+{{>head}}
+
+<main class="auth-container">
+  <div class="auth-form">
+    <h1>Login</h1>
+    
+    {{#error}}
+    <div class="alert error" role="alert" aria-live="assertive">
+      {{{error}}}
+    </div>
+    {{/error}}
+
+    <form method="POST" action="/auth/login">
+      <div class="form-group">
+        <label for="email">Email Address:</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          required 
+          placeholder="your@email.com"
+          aria-describedby="emailHelp"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          required 
+          placeholder="Enter your password"
+          aria-describedby="passwordHelp"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+
+    <p class="auth-switch">
+      Need an account? Please ask an organiser to create one for you.
+    </p>
+  </div>
+</main>
+
+{{>footer}}

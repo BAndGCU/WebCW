@@ -1,26 +1,57 @@
-
 {{> head}}
 {{> header}}
-<h1>Upcoming Courses</h1>
+<main>
 
-<div class="cards">
-  {{#courses}}
-  <article class="card">
-    <h2>/courses/{{title}}</a></h2>
-    <p class="muted">
-      Level: {{level}} • Type: {{type}} {{#allowDropIn}}• Drop-in OK{{/allowDropIn}}
-    </p>
-    <p>{{description}}</p>
-    <p class="muted">Dates: {{startDate}}  {{endDate}}</p>
-    <p class="muted">Next session: {{nextSession}} • Sessions: {{sessionsCount}}</p>
-    <p>/courses/View &amp; Book</a></p>
-  </article>
-  {{/courses}}
+  <div>
+    <p>Welcome to the Local Yoga Studio website!</p>
+    <p>We operate a wide range of yoga courses for all skill levels.</p>
+    <p>Browse our available courses to find one that's right for you!</p>
+  </div>
+  <h1>Upcoming Yoga Courses</h1>
 
-  {{^courses}}
-    <p>No courses available yet.</p>
-  {{/courses}}
-</div>
+  <div class="cards">
+    {{#courses}}
+    <article class="card course-card" aria-labelledby="course-{{id}}-title">
+      <h2 id="course-{{id}}-title"><a href="/courses/{{id}}">{{title}}</a></h2>
+      
+      <div class="course-meta" aria-label="Course attributes">
+        <span class="badge level" aria-label="Level: {{level}}">{{level}}</span>
+        <span class="badge type" aria-label="Type: {{type}}">{{type}}</span>
+        {{#allowDropIn}}
+        <span class="badge dropin" aria-label="Drop-in sessions available">Drop-in OK</span>
+        {{/allowDropIn}}
+      </div>
+
+      <p class="course-text">{{description}}</p>
+
+      <div class="course-details">
+        <div class="detail">
+          <strong>Duration:</strong>
+          <span>{{startDate}} – {{endDate}}</span>
+          <span aria-label="Total sessions: {{sessionsCount}}">({{sessionsCount}} sessions)</span>
+        </div>
+        <div class="detail">
+          <strong>Price:</strong>
+          <span aria-label="Price: {{price}}">{{price}}</span>
+        </div>
+        <div class="detail">
+          <strong>Location:</strong>
+          <span>{{location}}</span>
+        </div>
+        <div class="detail">
+          <strong>Next session:</strong>
+          <span>{{nextSession}}</span>
+        </div>
+      </div>
+
+      <a href="/courses/{{id}}" class="btn btn-primary">View &amp; Book</a>
+    </article>
+    {{/courses}}
+
+    {{^courses}}
+      <p>No courses available yet.</p>
+    {{/courses}}
+  </div>
+</main>
 
 {{> footer}}
-``

@@ -1,0 +1,97 @@
+{{> head}}
+{{> header}}
+
+<main>
+  <article class="course-detail-organiser">
+    <h1>{{course.title}}</h1>
+
+    <div class="course-meta">
+      <span class="badge level">{{course.level}}</span>
+      <span class="badge type">{{course.type}}</span>
+      {{#course.allowDropIn}}
+      <span class="badge dropin">Drop-in available</span>
+      {{/course.allowDropIn}}
+    </div>
+
+    <div class="course-info">
+      <div class="info-row">
+        <strong>Duration:</strong>
+        <span>{{course.startDate}} – {{course.endDate}}</span>
+      </div>
+      <div class="info-row">
+        <strong>Price:</strong>
+        <span>{{course.price}}</span>
+      </div>
+      <div class="info-row">
+        <strong>Location:</strong>
+        <span>{{course.location}}</span>
+      </div>
+      {{#course.description}}
+      <div class="info-row">
+        <strong>Description:</strong>
+        <p>{{course.description}}</p>
+      </div>
+      {{/course.description}}
+    </div>
+
+    <div class="course-actions">
+      <a href="/organiser/courses/{{course.id}}/edit" class="btn btn-primary">Edit Course</a>
+      <form action="/organiser/courses/{{course.id}}/delete" method="post" style="display:inline;">
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Delete this course and all its sessions?')">Delete Course</button>
+      </form>
+    </div>
+
+    <section class="sessions-section">
+      <h2>Sessions</h2>
+
+      <div class="session-actions">
+        <a href="/organiser/courses/{{course.id}}/sessions/new" class="btn btn-secondary">+ Add Session</a>
+      </div>
+
+      {{#sessions}}
+        <table class="sessions-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Location</th>
+              <th>Capacity</th>
+              <th>Booked</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#.}}
+            <tr>
+              <td>{{startDate}}</td>
+              <td>{{startTime}}</td>
+              <td>{{endTime}}</td>
+              <td>{{location}}</td>
+              <td>{{capacity}}</td>
+              <td>{{booked}}</td>
+              <td>
+                <a href="/organiser/sessions/{{id}}/edit" class="btn btn-small">Edit</a>
+                <a href="/organiser/sessions/{{id}}/attendees" class="btn btn-small">Attendees</a>
+                <form action="/organiser/sessions/{{id}}/delete" method="post" style="display:inline;">
+                  <button type="submit" class="btn btn-small btn-danger" onclick="return confirm('Delete this session?')">Delete</button>
+                </form>
+              </td>
+            </tr>
+            {{/.}}
+          </tbody>
+        </table>
+      {{/sessions}}
+
+      {{^sessions}}
+        <p class="empty-state">No sessions yet. <a href="/organiser/courses/{{course.id}}/sessions/new">Add one</a></p>
+      {{/sessions}}
+    </section>
+
+    <div class="back-link">
+      <a href="/organiser">← Back to Dashboard</a>
+    </div>
+  </article>
+</main>
+
+{{> footer}}

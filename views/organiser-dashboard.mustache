@@ -1,0 +1,59 @@
+{{> head}}
+{{> header}}
+
+<main>
+  <h1>Organiser Dashboard</h1>
+
+  <section class="organiser-actions">
+    <a href="/organiser/courses/new" class="btn btn-primary">+ Create New Course</a>
+    <a href="/organiser/users" class="btn btn-secondary">Manage Users</a>
+  </section>
+
+  <section class="courses-table-section">
+    <h2>Courses</h2>
+    {{#courses}}
+      <table class="courses-table" aria-label="List of all yoga courses with management options">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Level</th>
+            <th scope="col">Type</th>
+            <th scope="col">Date Range</th>
+            <th scope="col">Location</th>
+            <th scope="col">Price</th>
+            <th scope="col" aria-label="Number of sessions">Sessions</th>
+            <th scope="col" aria-label="Actions">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#.}}
+          <tr>
+            <td>
+              <strong>{{title}}</strong>
+            </td>
+            <td>{{level}}</td>
+            <td>{{type}}</td>
+            <td>{{startDate}} – {{endDate}}</td>
+            <td>{{location}}</td>
+            <td>{{price}}</td>
+            <td>{{sessionCount}}</td>
+            <td>
+              <a href="/organiser/courses/{{id}}" class="btn btn-small" aria-label="View {{title}} course details">View</a>
+              <a href="/organiser/courses/{{id}}/edit" class="btn btn-small" aria-label="Edit {{title}} course">Edit</a>
+              <form action="/organiser/courses/{{id}}/delete" method="post" style="display:inline;">
+                <button type="submit" class="btn btn-small btn-danger" aria-label="Delete {{title}} course" onclick="return confirm('Are you sure you want to delete {{title}}?')">Delete</button>
+              </form>
+            </td>
+          </tr>
+          {{/.}}
+        </tbody>
+      </table>
+    {{/courses}}
+
+    {{^courses}}
+      <p class="empty-state">No courses yet. <a href="/organiser/courses/new">Create one</a></p>
+    {{/courses}}
+  </section>
+</main>
+
+{{> footer}}

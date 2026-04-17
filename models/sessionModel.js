@@ -12,6 +12,15 @@ export const SessionModel = {
   async findById(id) {
     return sessionsDb.findOne({ _id: id });
   },
+  async update(id, patch) {
+    // Update session fields (except bookedCount which is managed by booking logic)
+    await sessionsDb.update({ _id: id }, { $set: patch });
+    return this.findById(id);
+  },
+  async delete(id) {
+    // Remove session by id
+    await sessionsDb.remove({ _id: id });
+  },
   async incrementBookedCount(id, delta = 1) {
     const s = await this.findById(id);
     if (!s) throw new Error('Session not found');

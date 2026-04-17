@@ -1,0 +1,125 @@
+{{> head}}
+{{> header}}
+
+<main>
+  <h1>{{title}}</h1>
+
+  {{#error}}
+  <div class="alert error" role="alert" aria-live="assertive">
+    {{{error}}}
+  </div>
+  {{/error}}
+
+  <form method="POST" action="{{#isNew}}/organiser/courses{{/isNew}}{{^isNew}}/organiser/courses/{{course.id}}{{/isNew}}" class="course-form">
+    <div class="form-group">
+      <label for="title">Course Title *</label>
+      <input 
+        type="text" 
+        id="title" 
+        name="title" 
+        required 
+        value="{{course.title}}"
+        placeholder="e.g., Beginner Yoga"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea 
+        id="description" 
+        name="description" 
+        placeholder="Course overview and details"
+      >{{course.description}}</textarea>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="level">Level *</label>
+        <select id="level" name="level" required>
+          <option value="">-- Select --</option>
+          <option value="beginner" {{#level.isBeginner}}selected{{/level.isBeginner}}>Beginner</option>
+          <option value="intermediate" {{#level.isIntermediate}}selected{{/level.isIntermediate}}>Intermediate</option>
+          <option value="advanced" {{#level.isAdvanced}}selected{{/level.isAdvanced}}>Advanced</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="type">Type *</label>
+        <select id="type" name="type" required>
+          <option value="">-- Select --</option>
+          <option value="WEEKEND_WORKSHOP" {{#type.isWeekendWorkshop}}selected{{/type.isWeekendWorkshop}}>Weekend Workshop</option>
+          <option value="WEEKLY_BLOCK" {{#type.isWeeklyBlock}}selected{{/type.isWeeklyBlock}}>Weekly Block</option>
+          <option value="SINGLE_SESSION" {{#type.isSingleSession}}selected{{/type.isSingleSession}}>Single Session</option>
+          <option value="RETREAT" {{#type.isRetreat}}selected{{/type.isRetreat}}>Retreat</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="startDate">Start Date</label>
+        <input 
+          type="date" 
+          id="startDate" 
+          name="startDate" 
+          value="{{course.startDate}}"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="endDate">End Date</label>
+        <input 
+          type="date" 
+          id="endDate" 
+          name="endDate" 
+          value="{{course.endDate}}"
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="price">Price (£)</label>
+        <input 
+          type="number" 
+          id="price" 
+          name="price" 
+          step="0.01" 
+          min="0"
+          value="{{course.price}}"
+          placeholder="e.g., 49.99"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="location">Location</label>
+        <input 
+          type="text" 
+          id="location" 
+          name="location" 
+          value="{{course.location}}"
+          placeholder="e.g., Studio A, 123 Main St"
+        />
+      </div>
+    </div>
+
+    <div class="form-group form-checkbox">
+      <input 
+        type="checkbox" 
+        id="allowDropIn" 
+        name="allowDropIn"
+        {{#course.allowDropIn}}checked{{/course.allowDropIn}}
+      />
+      <label for="allowDropIn">Allow drop-in bookings for individual sessions</label>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">
+        {{#isNew}}Create Course{{/isNew}}{{^isNew}}Update Course{{/isNew}}
+      </button>
+      <a href="/organiser" class="btn btn-secondary">Cancel</a>
+    </div>
+  </form>
+</main>
+
+{{> footer}}

@@ -1,0 +1,91 @@
+{{> head}}
+{{> header}}
+
+<main>
+  <h1>{{title}}</h1>
+
+  {{#error}}
+  <div class="alert error" role="alert" aria-live="assertive">
+    {{{error}}}
+  </div>
+  {{/error}}
+
+  <form method="POST" action="{{#isNew}}/organiser/sessions{{/isNew}}{{^isNew}}/organiser/sessions/{{session.id}}{{/isNew}}" class="session-form">
+    
+    {{#isNew}}
+    <div class="form-group">
+      <label for="courseId">Course *</label>
+      <input 
+        type="hidden" 
+        id="courseId" 
+        name="courseId" 
+        value="{{courseId}}"
+      />
+      <input 
+        type="text" 
+        disabled 
+        value="{{courseName}}"
+      />
+    </div>
+    {{/isNew}}
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="startDateTime">Start Date & Time *</label>
+        <input 
+          type="datetime-local" 
+          id="startDateTime" 
+          name="startDateTime" 
+          required
+          value="{{session.startDateTime}}"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="endDateTime">End Date & Time *</label>
+        <input 
+          type="datetime-local" 
+          id="endDateTime" 
+          name="endDateTime" 
+          required
+          value="{{session.endDateTime}}"
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="capacity">Capacity (max attendees) *</label>
+        <input 
+          type="number" 
+          id="capacity" 
+          name="capacity" 
+          required
+          min="1"
+          value="{{session.capacity}}"
+          placeholder="e.g., 20"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="location">Location (optional override)</label>
+        <input 
+          type="text" 
+          id="location" 
+          name="location" 
+          value="{{session.location}}"
+          placeholder="Leave blank to use course location"
+        />
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">
+        {{#isNew}}Create Session{{/isNew}}{{^isNew}}Update Session{{/isNew}}
+      </button>
+      <a href="/organiser/courses/{{session.courseId}}" class="btn btn-secondary">Cancel</a>
+    </div>
+  </form>
+</main>
+
+{{> footer}}

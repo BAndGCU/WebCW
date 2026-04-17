@@ -1,0 +1,65 @@
+{{> head}}
+{{> header}}
+
+<main>
+  <h1>User Management</h1>
+
+  <section class="user-actions">
+    <a href="/organiser/users/new" class="btn btn-primary">+ Create New User</a>
+  </section>
+
+  <section class="users-table-section">
+    <h2>All Users</h2>
+    {{#users}}
+      <table class="users-table" aria-label="List of all system users with role management options">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+            <th scope="col">Created</th>
+            <th scope="col" aria-label="Actions">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#.}}
+          <tr>
+            <td>{{name}}</td>
+            <td>{{email}}</td>
+            <td>
+              <form action="/organiser/users/{{id}}/role" method="post" style="display:inline;">
+                <label for="role-{{id}}" class="sr-only">Change role for {{name}}</label>
+                <select id="role-{{id}}" name="role" onchange="this.form.submit()" aria-label="Change {{name}}'s role">
+                  <option value="student" {{#isStudent}}selected{{/isStudent}}>Student</option>
+                  <option value="organiser" {{#isOrganiser}}selected{{/isOrganiser}}>Organiser</option>
+                </select>
+              </form>
+            </td>
+            <td>{{createdAt}}</td>
+            <td>
+              {{#isCurrentUser}}
+                <span class="muted">(This is you)</span>
+              {{/isCurrentUser}}
+              {{^isCurrentUser}}
+                <form action="/organiser/users/{{id}}/delete" method="post" style="display:inline;">
+                  <button type="submit" class="btn btn-small btn-danger" aria-label="Delete user {{name}}" onclick="return confirm('Are you sure you want to delete {{name}}?')">Delete</button>
+                </form>
+              {{/isCurrentUser}}
+            </td>
+          </tr>
+          {{/.}}
+        </tbody>
+      </table>
+    {{/users}}
+
+    {{^users}}
+      <p class="empty-state">No users yet. <a href="/organiser/users/new">Create one</a></p>
+    {{/users}}
+  </section>
+
+  <div class="back-link">
+    <a href="/organiser">← Back to Dashboard</a>
+  </div>
+</main>
+
+{{> footer}}

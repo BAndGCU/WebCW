@@ -1,0 +1,62 @@
+{{> head}}
+{{> header}}
+
+<main>
+  <article class="session-attendees">
+    <h1>Class Roster</h1>
+
+    <div class="session-info">
+      <div class="info-row">
+        <strong>Date & Time:</strong>
+        <span>{{sessionDate}}</span>
+      </div>
+      <div class="info-row">
+        <strong>Duration:</strong>
+        <span>{{sessionTime}}</span>
+      </div>
+      <div class="info-row">
+        <strong>Attendees:</strong>
+        <span aria-live="polite">{{attendeeCount}} participant{{#attendeeCount}}{{#isPlural}}s{{/isPlural}}{{/attendeeCount}}</span>
+      </div>
+    </div>
+
+    <section class="attendees-section">
+      <h2>Attendee List</h2>
+
+      {{#attendees}}
+        <table class="attendees-table" aria-label="List of attendees registered for this session">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Booking Date</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#.}}
+            <tr>
+              <td>{{userName}}</td>
+              <td>{{userEmail}}</td>
+              <td>{{bookingDate}}</td>
+              <td>
+                <span class="badge {{status}}" aria-label="Status: {{status}}">{{status}}</span>
+              </td>
+            </tr>
+            {{/.}}
+          </tbody>
+        </table>
+      {{/attendees}}
+
+      {{^attendees}}
+        <p class="empty-state">No attendees yet for this session.</p>
+      {{/attendees}}
+    </section>
+
+    <div class="back-link">
+      <a href="/organiser/courses/{{courseId}}">← Back to Course</a>
+    </div>
+  </article>
+</main>
+
+{{> footer}}

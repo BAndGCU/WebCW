@@ -72,13 +72,16 @@ import dotenv from "dotenv";
 import mustacheExpress from "mustache-express";
 import path from "path";
 import { fileURLToPath } from "url";
+import session from "express-session";
 
 // import authRoutes from './routes/auth.js';
+import authRoutes from "./routes/auth.js";
 import courseRoutes from "./routes/courses.js";
 import sessionRoutes from "./routes/sessions.js";
 import bookingRoutes from "./routes/bookings.js";
+import organiserRoutes from "./routes/organiser.js";
 import viewRoutes from "./routes/views.js";
-import { attachDemoUser } from "./middlewares/demoUser.js";
+import { loadUser } from "./middlewares/auth.js";
 import { initDb } from "./models/_db.js";
 
 dotenv.config();
@@ -101,23 +104,41 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 
+// Session middleware - must be before routes
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "your-secret-key-change-in-production",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24, // 24 hours
+    },
+  })
+);
+
 // Static
 app.use("/static", express.static(path.join(__dirname, "public")));
 
-// Demo user
-app.use(attachDemoUser);
+// Load user from session into req.user (runs on every request)
+app.use(loadUser);
 
 // Health
 app.get("/health", (req, res) => res.json({ ok: true }));
 
-// JSON API routes
-// app.use('/auth', authRoutes);
+// Auth routes (login, logout)
+app.use("/auth", authRoutes);
+
+// Organiser routes (course/session CRUD)
+app.use("/organiser", organiserRoutes);
+
+// SSR view routes (must come before API routes to take precedence)
+app.use("/", viewRoutes);
+
+// JSON API routes (secondary, for API clients)
 app.use("/courses", courseRoutes);
 app.use("/sessions", sessionRoutes);
 app.use("/bookings", bookingRoutes);
-
-// SSR view routes
-app.use("/", viewRoutes);
 
 // Errors
 export const not_found = (req, res) =>

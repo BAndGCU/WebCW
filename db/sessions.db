@@ -1,18 +1,26 @@
-{"courseId":"KcCVSfHRcUcI82OB","startDateTime":"2026-01-10T09:00:00.000Z","endDateTime":"2026-01-10T10:00:00.000Z","capacity":20,"bookedCount":0,"_id":"30qD030kJY3mfAzi"}
-{"courseId":"HJhDKATeOuyDW8s9","startDateTime":"2026-04-13T18:30:00.000Z","endDateTime":"2026-04-13T19:45:00.000Z","capacity":18,"bookedCount":0,"_id":"3IGAFNimw85ceHIE"}
-{"courseId":"HJhDKATeOuyDW8s9","startDateTime":"2026-02-16T18:30:00.000Z","endDateTime":"2026-02-16T19:45:00.000Z","capacity":18,"bookedCount":0,"_id":"7JsRSGjm1WIORa0R"}
-{"courseId":"KcCVSfHRcUcI82OB","startDateTime":"2026-01-10T17:00:00.000Z","endDateTime":"2026-01-10T18:00:00.000Z","capacity":20,"bookedCount":0,"_id":"7KtS5o6oYhhaJ1aC"}
-{"courseId":"HJhDKATeOuyDW8s9","startDateTime":"2026-03-02T18:30:00.000Z","endDateTime":"2026-03-02T19:45:00.000Z","capacity":18,"bookedCount":0,"_id":"CR9ZG4zlJmMJ7ZnI"}
-{"courseId":"HJhDKATeOuyDW8s9","startDateTime":"2026-02-23T18:30:00.000Z","endDateTime":"2026-02-23T19:45:00.000Z","capacity":18,"bookedCount":0,"_id":"CqY6Fpj2FviNlXxH"}
-{"courseId":"HJhDKATeOuyDW8s9","startDateTime":"2026-03-23T18:30:00.000Z","endDateTime":"2026-03-23T19:45:00.000Z","capacity":18,"bookedCount":0,"_id":"Ei9aufIWnQycCQfF"}
-{"courseId":"HJhDKATeOuyDW8s9","startDateTime":"2026-02-09T18:30:00.000Z","endDateTime":"2026-02-09T19:45:00.000Z","capacity":18,"bookedCount":0,"_id":"LHgAVtBt3mzh52IZ"}
-{"courseId":"HJhDKATeOuyDW8s9","startDateTime":"2026-03-09T18:30:00.000Z","endDateTime":"2026-03-09T19:45:00.000Z","capacity":18,"bookedCount":0,"_id":"NXj5FCIQSn8WPnnG"}
-{"courseId":"KcCVSfHRcUcI82OB","startDateTime":"2026-01-10T15:00:00.000Z","endDateTime":"2026-01-10T16:00:00.000Z","capacity":20,"bookedCount":0,"_id":"RAabFDIiRZnZ5pJ4"}
-{"courseId":"HJhDKATeOuyDW8s9","startDateTime":"2026-04-20T18:30:00.000Z","endDateTime":"2026-04-20T19:45:00.000Z","capacity":18,"bookedCount":0,"_id":"Wh3B2gtf6uOu6bwm"}
-{"courseId":"HJhDKATeOuyDW8s9","startDateTime":"2026-03-16T18:30:00.000Z","endDateTime":"2026-03-16T19:45:00.000Z","capacity":18,"bookedCount":0,"_id":"ZI3aTO0ESqeotXzx"}
-{"courseId":"HJhDKATeOuyDW8s9","startDateTime":"2026-04-06T18:30:00.000Z","endDateTime":"2026-04-06T19:45:00.000Z","capacity":18,"bookedCount":0,"_id":"gBt5cn6nAgv0MCfb"}
-{"courseId":"KcCVSfHRcUcI82OB","startDateTime":"2026-01-10T13:00:00.000Z","endDateTime":"2026-01-10T14:00:00.000Z","capacity":20,"bookedCount":0,"_id":"ihiFY3CzfAC58OYN"}
-{"courseId":"HJhDKATeOuyDW8s9","startDateTime":"2026-03-30T18:30:00.000Z","endDateTime":"2026-03-30T19:45:00.000Z","capacity":18,"bookedCount":0,"_id":"jNc1OaqoEKRMSKEt"}
-{"courseId":"HJhDKATeOuyDW8s9","startDateTime":"2026-02-02T18:30:00.000Z","endDateTime":"2026-02-02T19:45:00.000Z","capacity":18,"bookedCount":0,"_id":"uPJAsDjPwTkhkiRZ"}
-{"courseId":"KcCVSfHRcUcI82OB","startDateTime":"2026-01-10T11:00:00.000Z","endDateTime":"2026-01-10T12:00:00.000Z","capacity":20,"bookedCount":0,"_id":"xD4MkhWLgjydmKqB"}
+{"courseId":"48gVwOiwaJKZylhD","startDateTime":"2026-01-10T11:00:00.000Z","endDateTime":"2026-01-10T12:00:00.000Z","capacity":20,"bookedCount":0,"location":"Studio A, 123 Main Street","_id":"5b1r4VHg53gPkl0p"}
+{"courseId":"bnGeqkQzi6tc77Nc","startDateTime":"2026-03-23T18:30:00.000Z","endDateTime":"2026-03-23T19:45:00.000Z","capacity":18,"bookedCount":1,"location":"Studio B, 456 Oak Avenue","_id":"5ciAN6WPkbdfiwwU"}
+{"courseId":"48gVwOiwaJKZylhD","startDateTime":"2026-01-10T17:00:00.000Z","endDateTime":"2026-01-10T18:00:00.000Z","capacity":20,"bookedCount":0,"location":"Studio A, 123 Main Street","_id":"AAOK88Z8kV1K3hH5"}
+{"courseId":"bnGeqkQzi6tc77Nc","startDateTime":"2026-02-09T18:30:00.000Z","endDateTime":"2026-02-09T19:45:00.000Z","capacity":18,"bookedCount":1,"location":"Studio B, 456 Oak Avenue","_id":"IhOQuX0Qm7Y6itnO"}
+{"courseId":"48gVwOiwaJKZylhD","startDateTime":"2026-01-10T09:00:00.000Z","endDateTime":"2026-01-10T10:00:00.000Z","capacity":20,"bookedCount":0,"location":"Studio A, 123 Main Street","_id":"J4CyHy0Bo3EvElyN"}
+{"courseId":"bnGeqkQzi6tc77Nc","startDateTime":"2026-03-02T18:30:00.000Z","endDateTime":"2026-03-02T19:45:00.000Z","capacity":18,"bookedCount":1,"location":"Studio B, 456 Oak Avenue","_id":"SR5OvR2wrLnYZgIU"}
+{"courseId":"bnGeqkQzi6tc77Nc","startDateTime":"2026-02-16T18:30:00.000Z","endDateTime":"2026-02-16T19:45:00.000Z","capacity":18,"bookedCount":1,"location":"Studio B, 456 Oak Avenue","_id":"b9rfBedbOaSUGGS7"}
+{"courseId":"48gVwOiwaJKZylhD","startDateTime":"2026-01-10T15:00:00.000Z","endDateTime":"2026-01-10T16:00:00.000Z","capacity":20,"bookedCount":0,"location":"Studio A, 123 Main Street","_id":"iR7HoETAw4mA7Wvq"}
+{"courseId":"bnGeqkQzi6tc77Nc","startDateTime":"2026-04-20T18:30:00.000Z","endDateTime":"2026-04-20T19:45:00.000Z","capacity":18,"bookedCount":1,"location":"Studio B, 456 Oak Avenue","_id":"iXb5irRPgXFxGdFq"}
+{"courseId":"bnGeqkQzi6tc77Nc","startDateTime":"2026-04-13T18:30:00.000Z","endDateTime":"2026-04-13T19:45:00.000Z","capacity":18,"bookedCount":1,"location":"Studio B, 456 Oak Avenue","_id":"iqEVsujQ7bt4UESc"}
+{"courseId":"bnGeqkQzi6tc77Nc","startDateTime":"2026-02-23T18:30:00.000Z","endDateTime":"2026-02-23T19:45:00.000Z","capacity":18,"bookedCount":1,"location":"Studio B, 456 Oak Avenue","_id":"koMdznTiltBTtPJG"}
+{"courseId":"bnGeqkQzi6tc77Nc","startDateTime":"2026-04-06T18:30:00.000Z","endDateTime":"2026-04-06T19:45:00.000Z","capacity":18,"bookedCount":1,"location":"Studio B, 456 Oak Avenue","_id":"kp0urHQxVUyblH9K"}
+{"courseId":"bnGeqkQzi6tc77Nc","startDateTime":"2026-03-16T18:30:00.000Z","endDateTime":"2026-03-16T19:45:00.000Z","capacity":18,"bookedCount":1,"location":"Studio B, 456 Oak Avenue","_id":"lDZRwN6AKlzRn2cQ"}
+{"courseId":"bnGeqkQzi6tc77Nc","startDateTime":"2026-03-30T18:30:00.000Z","endDateTime":"2026-03-30T19:45:00.000Z","capacity":18,"bookedCount":1,"location":"Studio B, 456 Oak Avenue","_id":"qN02bAHxcYwneaOI"}
+{"courseId":"bnGeqkQzi6tc77Nc","startDateTime":"2026-03-09T18:30:00.000Z","endDateTime":"2026-03-09T19:45:00.000Z","capacity":18,"bookedCount":1,"location":"Studio B, 456 Oak Avenue","_id":"rKsa8OTuEh5dphgB"}
+{"courseId":"bnGeqkQzi6tc77Nc","startDateTime":"2026-02-02T18:30:00.000Z","endDateTime":"2026-02-02T19:45:00.000Z","capacity":18,"bookedCount":2,"location":"Studio B, 456 Oak Avenue","_id":"sGQzuSVRshVzmjN3"}
+{"courseId":"48gVwOiwaJKZylhD","startDateTime":"2026-01-10T13:00:00.000Z","endDateTime":"2026-01-10T14:00:00.000Z","capacity":20,"bookedCount":0,"location":"Studio A, 123 Main Street","_id":"xNsEoAKqIRIQp798"}
 {"$$indexCreated":{"fieldName":"courseId","unique":false,"sparse":false}}
+{"courseId":"8kawpVt2AiTayxre","startDateTime":"2026-04-17T16:00","endDateTime":"2026-04-17T17:00","capacity":15,"location":null,"bookedCount":0,"createdAt":"2026-04-17T12:52:09.864Z","_id":"wqXMLsWZNKkNdibt"}
+{"courseId":"8kawpVt2AiTayxre","startDateTime":"2026-04-17T16:00","endDateTime":"2026-04-17T17:00","capacity":16,"location":null,"bookedCount":0,"createdAt":"2026-04-17T12:52:09.864Z","_id":"wqXMLsWZNKkNdibt"}
+{"courseId":"fT7U388jZN5r9H5L","startDateTime":"2026-04-17T13:00","endDateTime":"2026-04-17T17:00","capacity":20,"location":null,"bookedCount":0,"createdAt":"2026-04-17T12:55:20.592Z","_id":"PHvMGULHu6B7nlAW"}
+{"courseId":"fT7U388jZN5r9H5L","startDateTime":"2026-04-17T13:00","endDateTime":"2026-04-17T17:00","capacity":20,"location":null,"bookedCount":1,"createdAt":"2026-04-17T12:55:20.592Z","_id":"PHvMGULHu6B7nlAW"}
+{"$$deleted":true,"_id":"PHvMGULHu6B7nlAW"}
+{"courseId":"upyG58GrgArtKoRe","startDateTime":"2026-04-17T13:57","endDateTime":"2026-04-17T14:57","capacity":20,"location":null,"bookedCount":0,"createdAt":"2026-04-17T12:57:20.755Z","_id":"tZWrXjm94F4dVUv1"}
+{"$$deleted":true,"_id":"tZWrXjm94F4dVUv1"}
+{"courseId":"bnGeqkQzi6tc77Nc","startDateTime":"2026-02-02T18:30:00.000Z","endDateTime":"2026-02-02T19:45:00.000Z","capacity":18,"bookedCount":3,"location":"Studio B, 456 Oak Avenue","_id":"sGQzuSVRshVzmjN3"}

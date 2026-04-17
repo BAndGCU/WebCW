@@ -15,4 +15,8 @@ export const CourseModel = {
     await coursesDb.update({ _id: id }, { $set: patch });
     return this.findById(id);
   },
+  async delete(id) {
+    // Remove course by id
+    await coursesDb.remove({ _id: id });
+  },
 };

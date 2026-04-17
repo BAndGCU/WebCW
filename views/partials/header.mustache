@@ -1,13 +1,25 @@
-<header class="site-header">
+<header class="site-header" role="banner">
   <div class="wrap">
-    🧘 Yoga Studio
-    <nav>
-      <a> hrefs</a>
+    <a href="/" class="brand" aria-label="Yoga Studio - Home">
+      🧘 Yoga Studio
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="/" aria-current="{{#isHome}}page{{/isHome}}">Home</a>
+      <a href="/courses" aria-current="{{#isCourses}}page{{/isCourses}}">Courses</a>
     </nav>
-    {{#user}}
     <div class="user">
-      Signed in as <strong>{{ name }}</strong>
+      {{#user}}
+        {{#isOrganiser}}
+          <a href="/organiser" class="btn btn-secondary btn-small">Dashboard</a>
+        {{/isOrganiser}}
+        <span class="user-greeting" aria-label="Logged in as {{name}}">
+          {{name}}
+        </span>
+        <a href="/auth/logout" class="btn btn-secondary">Logout</a>
+      {{/user}}
+      {{^user}}
+        <a href="/auth/login" class="btn btn-primary">Login</a>
+      {{/user}}
     </div>
-    {{/user}}
   </div>
 </header>
